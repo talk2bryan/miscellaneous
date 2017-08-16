@@ -17,7 +17,7 @@ public class Feedback{
 		altered_strudents = comopare_grades();
 		generate_output(altered_strudents);
 
-		System.out.println(Arrays.toString(altered_strudents));	
+		System.out.println("altered_strudents: " + Arrays.toString(altered_strudents));	
 	}
 	public static String[] comopare_grades() throws IOException{
 		String file1, file2;
@@ -29,14 +29,12 @@ public class Feedback{
 		int index = 0;
 
 		Scanner kbd = new Scanner(System.in);
-		// System.out.println("File1: ");
 		file1 = "old_grades.txt"; //kbd.nextLine();
 
-		// System.out.println("File2: ");
 		file2 =  "new_grades.txt";//kbd.nextLine();
 		try
 		{
-			if (file1 != file2 && (file1 != null && file2 != null)) {
+			if ( (file1 != null && file2 != null) && (file1 != file2) ) {
 				BufferedReader in1 = new BufferedReader(new FileReader(file1));
 				BufferedReader in2 = new BufferedReader(new FileReader(file2));
 
@@ -81,8 +79,7 @@ public class Feedback{
 
 
 		Scanner kbd = new Scanner(System.in);
-		// System.out.println("Grades File: ");
-		String file = "feedback.txt"; //kbd.nextLine();
+		String file = "feedback.txt"; 
 
 		try
 		{
@@ -101,11 +98,8 @@ public class Feedback{
 					if (line.length()>0) {
 						if (line.indexOf("===>")>=0) {
 							contents= line.trim().split("\\s+");
+							
 							String file_name = ""+contents[1]+".txt";
-							System.out.println(file_name);
-							// System.out.println( students[4] );//Arrays.toString().indexOf(contents[1]) );
-							// System.out.println(Arrays.toString(contents));
-							// System.out.println( );
 							int position = java.util.Arrays.binarySearch(students, contents[1]);
 							if (position>=0) {
 								student_grade = altered_strudents_grades[ position ];
@@ -118,7 +112,6 @@ public class Feedback{
 
 								line = in.readLine();
 								while(line.length() > 0 ){
-									System.out.println(line);
 									out.println(line);
 									line = in.readLine();
 								}
@@ -131,7 +124,6 @@ public class Feedback{
 					line = in.readLine();
 				}
 			}
-
 		}
 		catch(IOException ioe){
 			System.out.println(ioe.getMessage());
