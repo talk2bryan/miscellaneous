@@ -10,6 +10,18 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import numpy as np
 import tensorflow as tf
 
+
+''' defining begin and end functions. '''
+def begin():
+    print('\ncustom_estimator_linear_regression.py\n')
+
+def end():
+    print('\nFin.\n')
+
+
+''' Start of program '''
+begin()
+
 # Only one real-valued feature exists...
 def model_fn(features, labels, mode):
     # Building the model, and predict values
@@ -55,3 +67,8 @@ eval_metrics = estimator.evaluate(input_fn=eval_input_fn)
 print('train metrics: %r' % train_metrics)
 print('eval metrics: %r' % eval_metrics)
 
+
+
+
+
+end()

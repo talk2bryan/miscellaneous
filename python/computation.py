@@ -17,12 +17,10 @@ import tensorflow as tf
 ''' begin and end Function definitions  '''
 
 def begin():
-    with tf.Session() as sess:
-        print('\ncomputational.py\n')
+    print('\ncomputational.py\n')
         
 def end():
-    with tf.Session() as sess:
-        print('\nFin.\n')
+    print('\nFin.\n')
  
 
 
