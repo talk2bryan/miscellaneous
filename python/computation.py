@@ -89,15 +89,64 @@ with tf.Session() as sess:
 optimizer = tf.train.GradientDescentOptimizer(0.01)
 train = optimizer.minimize(loss)
 
+#training data
+x_train = [1,2,3,4]
+y_train = [0,-1,-2,-3] 
+
 with tf.Session() as sess:
     sess.run(init) # set W and b to default incorrect values
     
     for i in range(1000):
-        sess.run( train, { x: [1,2,3,4], y: [0,-1,-2,-3] })
-    print('Trained values for W and b ==> ', sess.run([W, b]))
+        sess.run( train, { x: x_train, y: y_train })
 
+    curr_W, curr_b, curr_loss = sess.run([W, b, loss], {x: x_train, y: y_train} )
+    
+    # Display results
+    print('Trained values for W and b, and loss function:')
+    print('W: %s b: %s loss: %s '% (curr_W, curr_b, curr_loss))
 
+###############################################
+#
+#     tf.estimator
+#
+###############################################
 
+# For data manipulation, we need numpy
+import numpy as np
+
+# Declare list of features.
+feature_columns = [tf.feature_column.numeric_column('x', shape = [1])]
+
+# An estimator for training and evaluation.
+estimator = tf.estimator.LinearRegressor(feature_columns=feature_columns)
+
+# Reading and setting up data sets.
+# Two data sets, one for training and the other for evaluation.
+# num_epochs = How many batches of data.
+x_train_ = np.array([1., 2., 3., 4.])
+y_train_ = np.array([0., -1., -2., -3.])
+x_eval_ = np.array([2., 5., 8., 1.])
+y_eval_ = np.array([-1.01, -4.1, -7, 0.])
+
+input_fn = tf.estimator.inputs.numpy_input_fn(
+        {'x': x_train_}, y_train_, batch_size=4, num_epochs=None, shuffle=True)
+train_input_fn = tf.estimator.inputs.numpy_input_fn(
+        {'x': x_train_}, y_train_, batch_size=4, num_epochs=1000, shuffle=False)
+eval_input_fn = tf.estimator.inputs.numpy_input_fn(
+        {'x': x_eval_}, y_eval_, batch_size=4, num_epochs=1000, shuffle=False)
+
+# Invoke the training steps and by calling the train method, passing the input
+# and number of steps.
+estimator.train(input_fn=input_fn, steps=1000)
+
+# Makiah Makiah Makiah Makiah Makiah
+
+# Evaluate the performance of the model
+train_metrics = estimator.evaluate(input_fn=train_input_fn)
+eval_metrics = estimator.evaluate(input_fn=eval_input_fn)
+
+print('train metrics: %r' % train_metrics)
+print('eval metrics: %r' % eval_metrics)
 
 
 end()
