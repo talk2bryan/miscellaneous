@@ -1,8 +1,8 @@
 # Makefile
 CXX = g++
-CXXFLAGS += -Wall
+CXXFLAGS += -Wall -std=c++11
 DEBUGFLAGS = -DDEBUG -g
-TARGET = name templates
+TARGET = name templates lex_order
 
 all:	$(TARGET)
 
@@ -14,6 +14,9 @@ name:	naming.cpp
 
 templates: intro_templates.cpp
 	$(CXX) $(CXXFLAGS) $< -o $@
+
+lex_order: lexicographical_order.cpp
+	$(CXX) $(CXXFLAGS)  $< -o $@
 
 clean:
 	rm -rf $(TARGET) *.dSYM

@@ -11,7 +11,7 @@ import numpy as np
 import tensorflow as tf
 
 
-''' defining begin and end functions. '''
+''' defining begin and end function markers. '''
 def begin():
     print('\ncustom_estimator_linear_regression.py\n')
 
