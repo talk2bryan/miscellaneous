@@ -11,6 +11,7 @@
 #include <string>
 #include <algorithm>
 
+#include "general_utility.hpp"
 
 void swap(std::string& str, int first, int second){
 	char temp = str[first];
@@ -62,13 +63,13 @@ int main(int argc, char const *argv[])
 	int input;
 
 	do{
-		std::cout << "Please enter an integer value: " << std::endl;
+		VERBOSE("Please enter an integer value: ");
 		std::cin >> input;
 
 		// Output
 		if (input == 0)
 		{
-			std::cout<<"Fin."<<std::endl;
+			VERBOSE("Fin.");
 		}else{
 			std::cout << "The next greater number with same set of digits is: " 
 				<< get_lex_order(input) << std::endl;
