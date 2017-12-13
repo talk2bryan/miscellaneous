@@ -2,3 +2,5 @@
 *.o
 name
 templates
+lex_order
+long_number
