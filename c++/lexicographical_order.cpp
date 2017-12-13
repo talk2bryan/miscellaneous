@@ -52,7 +52,6 @@ int get_lex_order(int number){
 		auto start = data.begin() + index+1;
 		std::sort(start, data.end());
 		result = stoi(data);
-
 	}
 
 	return result;
