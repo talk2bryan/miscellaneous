@@ -8,6 +8,7 @@ public class Permutation{
 		assert "abdc".equals(next_permutation("abcd"));
 		assert "abcd".equals(next_permutation("dcba"));
 		assert "1267348".equals(next_permutation("1264873"));
+		assert "536479".equals(next_permutation("534976"));
 		assert "bdac".equals(next_permutation("bcda"));
 		assert "123".equals(next_permutation("321"));
 
