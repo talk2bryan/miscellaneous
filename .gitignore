@@ -1,5 +1,6 @@
 *.class
 *.o
+tags
 name
 templates
 lex_order
