@@ -6,3 +6,4 @@ templates
 lex_order
 long_number
 c1500-emulator
+least_recently_used
