@@ -1,11 +1,12 @@
-// long_number_system.cpp
-
-// A system that handles long numbers entered by the user.
-// Current functions: add.
-// TODO (whoami): subtract
-
-// Author: Bryan Wodi
-// Nov. 16, 2017
+/**
+* @file long_number_system.cpp
+* @brief  A system that handles long numbers entered by the user.
+*         Current functions: add.
+*         TODO (whoami): subtract
+* @author Bryan Wodi <talk2kamp@gmail.com>
+* @version 1.0.3
+* @date 2018-01-06
+*/
 
 
 #include <iostream>
@@ -84,6 +85,20 @@ Number operator+(Number lhs, const Number& rhs){
 }
 
 
+/* --------------------------------------------------------------------------*/
+/**
+* @brief For a given string, check if it contains only numbers
+*
+* @param str
+*
+* @return boolean
+*/
+/* --------------------------------------------------------------------------*/
+bool contains_only_digits(std::string& str){
+    return std::all_of(str.begin(), str.end(),
+        [](unsigned char c){ return std::isdigit(c); });
+}
+
 int main(int argc, char const *argv[])
 {
 	std::string u_input;
@@ -92,16 +107,13 @@ int main(int argc, char const *argv[])
 	std::cin >> u_input;
 
 	// Ensure that input contains all digits before calling Number constructor.
-	assert( std::all_of(u_input.begin(), 
-		u_input.end(), [](unsigned char c){ return std::isdigit(c);}) );
+    assert(true == contains_only_digits(u_input));
 	Number a = Number(u_input);
 
 	VERBOSE("Please enter a long integer value: ");
 	std::cin >> u_input;
 
-	assert( std::all_of(u_input.begin(), 
-		u_input.end(), [](unsigned char c){ return std::isdigit(c);}) );
-
+    assert(true == contains_only_digits(u_input));
 	Number b = Number(u_input);
 
 	Number result = a + b ;
