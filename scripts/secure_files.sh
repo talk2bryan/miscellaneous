@@ -35,7 +35,7 @@ done
 
 cd ~
 if [ $ENCRYPT -ne 0 ]; then
-    zip -q -r $DEST $DEST
+    zip -qr - $DEST | pv -bep -s $(du -bs $DEST | awk '{print $1}') > $ZIP_TO_ENCRYPT
     openssl enc -aes-256-cbc -e -salt -in $ZIP -out $OUT -pbkdf2 -pass env:FILES_SECURE_AUTH
     if [ $REMOVE_FOLDER -ne 0 ]; then
         echo "Deleting: $DEST $ZIP"
@@ -48,3 +48,4 @@ fi
 
 echo "Cleaning up...."
 rm -r $ZIP
+
