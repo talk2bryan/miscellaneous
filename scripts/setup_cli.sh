@@ -11,7 +11,7 @@ chsh -s $(which fish)
 printf "\nDownloading and setting up dotfiles\n\n"
 sudo apt-get install -y git-core
 git clone git@github.com:talk2bryan/dotfiles.git
-mv dotfiles/config/fish ~/.config/fish
+ln -s dotfiles/config/fish $HOME/.config/fish
 touch ~/.config/fish/includes/private_aliases.fish
 
 mv dotfiles/vimrc ~/.vimrc 
